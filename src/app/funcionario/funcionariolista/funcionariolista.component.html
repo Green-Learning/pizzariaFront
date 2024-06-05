@@ -1,0 +1,72 @@
+<div class="container">
+  
+    <div class="row text-start">
+  
+      <div class="col-md-10">
+        <h4>Lista de Funcionarios!</h4>
+        <div class="col-md-4">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Pesquisa</span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" [(ngModel)]="termoBusca" (ngModelChange)="filtrar()">
+          </div> 
+        </div>
+      </div>
+    
+    <div class="col-md-2">
+      <button class="btn btn-success offset-md-5" (click)="adicionar(modal1)">Adicionar</button>
+    </div>
+    
+    <div class="border" style="border-radius: 20px; background-color: white; padding: 6px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="p-2">ID</th>
+            <th scope="col" class="p-2">Nome</th>
+            <th scope="col" class="p-2">Telefone</th>
+            <th scope="col" class="p-2">CPF</th>
+            <th scope="col" class="p-2 d-flex justify-content-center">Acoes</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider" *ngFor="let funcionario of listaFiltrada; let i = index">
+          <tr class="col-md-12" >
+            <th scope="row" class="col-md-1">{{ funcionario.id }}</th>
+            <td class="col-md-4" > {{ funcionario.nome }} </td>
+            <td class="col-md-2"> {{ funcionario.telefone }} </td>
+            <td class="col-md-2"> {{ funcionario.cpf }} </td>
+            <td *ngIf="!modoLancamento" class="col-md-1">
+              <div class="btn-group" role="group">
+                  <div class="btn text-align-center col-md-1" type="button" (click)="editar(modal1, funcionario, i)">
+                    <span class="badge bg-warning btn text-align-center col"> <i
+                      class="bi bi-pen-fill"></i></span>
+                  </div>
+              </div>
+              <div class="btn text-align-center col-md-1" type="button" (click)="deletar(funcionario)">
+                <span class="badge bg-danger btn text-align-center col"> <i
+                        class="bi bi-trash3-fill"></i></span>
+            </div>
+            </td>
+            <td *ngIf="modoLancamento"> <button class="btn btn-primary" (click)="lancamentoFuncionario(funcionario)">Vincular</button> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>   
+  </div>
+  
+  
+  
+  
+  <ng-template #modal1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title"></h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+  
+      <app-funcionariodetails [funcionario]="funcionarioSelecionadoParaEdicao"
+        (retorno)="addOuEditarFuncionario($event)"></app-funcionariodetails>
+  
+    </div>
+  </ng-template>
+  </div>
+  

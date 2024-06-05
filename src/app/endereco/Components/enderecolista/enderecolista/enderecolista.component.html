@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row text-start">
+  
+      <div class="col-md-10">
+        <h4>Lista de Enderecos</h4>
+        <div class="col-md-4">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Pesquisa</span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" [(ngModel)]="termoBusca" (ngModelChange)="filtrar()">
+          </div> 
+        </div>
+      </div>
+   
+      <div class="border" style="border-radius: 20px; background-color: white; padding: 6px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="p-2">ID</th>
+              <th scope="col" class="p-2">Rua</th>
+              <th scope="col" class="p-2">Numero</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr *ngFor="let endereco of listaFiltrada; let i = index" class="col-md-12">
+              <th scope="row" class="col-md-1">{{ endereco.id }}</th>
+              <td class="col-md-2"> {{ endereco.rua }} </td>
+              <td class="col-md-4"> {{ endereco.numCasa }} </td>
+              <td *ngIf="modoLancamento"> <button class="btn btn-primary" (click)="lancamentoEndereco(endereco)">Vincular</button> </td>
+  
+            </tr>
+          </tbody>
+        </table>
+  
+      </div>
+    </div>
+  </div>
+  

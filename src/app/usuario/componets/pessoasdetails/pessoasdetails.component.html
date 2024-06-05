@@ -1,0 +1,74 @@
+<form (ngSubmit)="salvar()">
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Nome:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="usuario.nome">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Telefone:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="usuario.telefone">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">CPF</label>
+    <input type="text" class="form-control" name="exampleCPF1" [(ngModel)]="usuario.cpf">
+  </div>
+
+  <div class="mb-3">
+    <label for="roleSelect" class="form-label">Função:</label>
+    
+    
+  </div>
+  
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Salvar</button>
+  </div>
+</form>
+<button class="btn btn-primary"   (click)="adicionarEndereco(modal1)">Adicionar Endereco</button>
+
+<table class="table" *ngIf="usuario.enderecos">
+  <thead>
+      <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Rua</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Acoes</th>
+      </tr>
+  </thead>
+  <tbody class="table-group-divider">
+      <tr *ngFor="let endereco of usuario.enderecos; let i = index">
+          <th scope="row">{{ endereco.id }}</th>
+          <td> {{ endereco.rua }} </td>
+          <td> {{ endereco.numCasa }} </td>
+
+          <td>
+            <div class="btn-group" role="group">
+              <div class="btn text-align-center col-md-2" type="button" (click)="editarEndereco(modal1, endereco, i)">
+                  <!-- <button class="badge rounded-pill text-bg-primary retiraBorda" (click)="abrirModalEditar(modal, pessoa, i)">Editar</button> -->
+                  <span class="badge bg-warning btn text-align-center col"> <i
+                          class="bi bi-pen-fill"></i></span>
+              </div>
+              <div class="btn text-align-center col-md-2" type="button"(click)="deletar(endereco, i)">
+                  <!-- <button class="badge rounded-pill text-bg-primary retiraBorda" (click)="deletar()">Editar</button> -->
+                  <span class="badge bg-danger btn text-align-center col"> <i
+                          class="bi bi-trash3-fill"></i></span>
+              </div>
+            </div>
+            </td>
+      </tr>
+  </tbody>
+</table>
+
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title"></h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <app-enderecosdetails [endereco]="enderecoSelecionadoParaEdicao"  (retorno)="retornoEndereco($event)"></app-enderecosdetails>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

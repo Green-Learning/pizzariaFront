@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row text-start">
+    <div class="col-md-10">
+      <h4>Lista de Sabor</h4>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Pesquisa</span>
+          <input type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" [(ngModel)]="termoBusca" (ngModelChange)="filtrar()">
+        </div> 
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-success offset-md-5" (click)="adicionar(modal1)">Adicionar</button>
+    </div>
+  
+    <div class="border" style="border-radius: 20px; background-color: white; padding: 6px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="p-2">ID</th>
+            <th scope="col" class="p-2">Sabores</th>
+            <th scope="col" class="p-2 me-5 d-flex justify-content-end">Acoes</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let sabor of listaFiltrada; let i = index">
+            <th scope="row">{{ sabor.id }}</th>
+            <td>{{ sabor.nome }}</td>
+            <td *ngIf="!modoLancamento" class="d-flex justify-content-end me-2" >
+              <div class="btn-group" role="group">
+                <div class="btn text-align-center col-md-1" type="button" (click)="editar(modal1, sabor, i)">
+                  <span class="badge bg-warning btn text-align-center col"> <i
+                    class="bi bi-pen-fill"></i></span>
+                </div>
+            </div>
+            <div class="btn text-align-center col-md-1" type="button" (click)="deletar(sabor)">
+              <span class="badge bg-danger btn text-align-center col"> <i
+                      class="bi bi-trash3-fill"></i></span>
+          </div>
+            </td>
+            <td *ngIf="modoLancamento" class="d-flex justify-content-end me-3">
+              <button
+                type="button"
+                class="btn btn-primary "
+                (click)="lancamento(sabor)"
+              >
+                Selecionar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+
+  
+
+      
+</div>
+
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Selecionar Sabor</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-saboresdetails
+      [sabor]="saborSelecionadoParaEdicao"
+      (retorno)="addOuEditarPessoa($event)"
+    ></app-saboresdetails>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

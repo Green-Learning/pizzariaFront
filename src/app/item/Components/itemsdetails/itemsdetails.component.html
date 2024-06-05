@@ -1,0 +1,59 @@
+<form (ngSubmit)="salvar()">
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Nome:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="item.nome">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Tamanho:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="item.tamanho">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Valor:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="item.valor">
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    <input type="checkbox" name="abc" [(ngModel)]="item.possuiSabores"> Tem Sabor?
+  </div>
+  <div *ngIf="item.possuiSabores">
+    <button type="button" class="btn btn-primary" (click)="abrirModal(modal1)">Adicionar um Sabor</button>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Sabor</th>
+          <th scope="col" class="colspan-2">Acoes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sabor of item.sabores let i = index">
+          <th scope="row">{{ sabor.id }}</th>
+          <td> {{ sabor.nome }} </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deletar(sabor,i)">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+</form>
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Adicionar Sabor</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <app-saboreslista [modoLancamento]="true" (retorno)="retornoSaboresLista($event)"></app-saboreslista>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

@@ -1,0 +1,13 @@
+<form (ngSubmit)="salvar()">
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Rua:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="endereco.rua">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Numero da Casa:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="endereco.numCasa">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

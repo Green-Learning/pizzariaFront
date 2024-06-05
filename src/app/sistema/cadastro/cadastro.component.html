@@ -1,0 +1,54 @@
+<section class="vh-100 align-items-center d-flex">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+  
+        <div class="col-md-6 col-lg-3 col-lx-4 ">
+          <form class="col-md-10" (ngSubmit)="cadastro()">
+              <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start col-md-5">
+                <p class="lead fw-normal mb-0 me-3">Login</p>
+              </div>
+              <br>
+              <br>
+  
+              <div class="form-outline mb-3 col-md-12">
+                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Insira o email" [(ngModel)]="cadastrar.username" name="exampleInputText1"/>
+              <label class="form-label" for="form3Example3">Username</label>
+  
+              </div>
+  
+              <div class="form-outline mb-3 col-md-12">
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  placeholder="Insira a senha" [(ngModel)]="cadastrar.password" name="exampleInputPassword1"/>
+                <label class="form-label" for="form3Example4">Password</label>
+  
+              </div>
+
+              <div class="form-outline mb-3 col-md-12">
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  placeholder="Insira a senha" [(ngModel)]="cadastrar.role" name="exampleInputPassword1"/>
+                <label class="form-label" for="form3Example4">Role</label>
+  
+              </div>
+  
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button type="submit" class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Cadastrar</button>
+              </div>
+          </form>
+      </div>
+  
+        <div class="col-md-6 col-lg-5 col-xl-3 offset-md-1">
+          <img src="./assets/vecteezy_pizza-png-graphic-clipart-design_19613640_634.png" alt="Sample image"
+          class="img-fluid">
+        </div>
+  
+        
+  
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  

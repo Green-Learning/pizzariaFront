@@ -1,0 +1,192 @@
+<form (ngSubmit)="salvar()">
+  <div class="row">
+
+    <div class="row">
+
+      <div class="col-md-8 align-self-center">
+        <h3 *ngIf="pedido.usuario == null" class="col-md-10">Sem Cliente</h3>
+        <h5 *ngIf="pedido.usuario != null" class="col-md-10">
+          Cliente:  {{ pedido.usuario.nome }}
+        </h5>
+      </div>
+
+      <div class=" d-flex justify-content-end align-items-center col-md-4">
+        <button type="button" class="btn btn-primary col-md-10" (click)="lancarUsuario(modal2)" [disabled]="desabilitaCampo">
+          Vincular Cliente
+        </button>
+      </div>
+
+    </div>
+    
+    <div class="row mt-3">
+ 
+        <div class="col-md-8 align-self-center">
+          <h3 *ngIf="pedido.funcionario == null" class="col-md-10">Sem Funcionario</h3>
+          <h5 *ngIf="pedido.funcionario != null" class="col-md-10">
+            Funcionario: {{ pedido.funcionario.nome }}
+          </h5>
+        </div>
+        
+        <div class=" d-flex justify-content-end align-items-center col-md-4">
+          <button type="button" *ngIf="mostrarBotoesRole" class="btn btn-primary col-md-10 " (click)="lancarFuncionario(modal3)"
+            [disabled]="desabilitaCampo">
+            Vincular Funcionario
+          </button>
+        </div>
+      
+    </div>
+    
+
+    <div class="row mt-3">
+
+      <div class="col-md-8 align-self-center" *ngIf="pedido.entrega" >
+
+        <div class="col-md-9 inputEndereco">
+          <div class="form-floating mb-3">
+            <input disabled type="text" class="form-control inputEndereco " name="rua" placeholder="rua" 
+            [(ngModel)]="rua" />
+            <label for="rua">Rua</label>
+          </div>
+        </div>
+
+        <div class="col-md-9 inputEndereco">
+          <div class="form-floating mb-3">
+            <input disabled type="text" class="form-control inputEndereco" name="numCasa" placeholder="numero"
+              [(ngModel)]="numCasa" />
+            <label for="numCasa">Numero:</label>
+          </div>
+        </div>
+  
+      </div>
+
+      <div class=" col-md-4 d-flex justify-content-end align-items-center">
+        <button *ngIf="pedido.entrega" type="button" [disabled]="desabilitaCampo" class="btn btn-outline-success col-md-10"
+          (click)="lancarEndereco(modal4)">
+          Selecionar endereço
+        </button>
+      </div>
+
+    </div>
+    
+    
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Nome:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="pedido.nome" [disabled]="desabilitaCampo" />
+  </div>
+
+  <div class="mb-3">
+    <select [(ngModel)]="pedido.entrega" [disabled]="desabilitaCampo" class="form-select"
+      aria-label="Default select example" name="select1">
+      <option [ngValue]="undefined">Selecione uma Opção</option>
+      <option [ngValue]="true">Delivery</option>
+      <option [ngValue]="false">Balcão</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a comment here" [(ngModel)]="pedido.observacao"
+        [disabled]="desabilitaCampo" name="floatingTextarea2" style="height: 60px"></textarea>
+      <label for="floatingTextarea2">Observacao</label>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-success col-md-2 offset-md-10" (click)="lancar(modal1)"
+    [disabled]="desabilitaCampo">
+    Adicionar Item
+  </button>
+
+  <div *ngIf="pedido.item">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Tamanho</th>
+          <th scope="col">Valor</th>
+
+          <th scope="col">Acoes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pedido.item; let i = index">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.tamanho }}</td>
+          <td>{{ item.valor }}</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deletar(item, i)" [disabled]="desabilitaCampo">
+              <i class="bi bi-trash3-fill"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-itemslista [modoLancamento]="true" (retorno)="retornoItemLista($event)"></app-itemslista>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #modal2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-pessoaslista [modoLancamento]="true" (usuarioRetorno)="receberUsuario($event)"></app-pessoaslista>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #modal3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-funcionariolista [modoLancamento]="true"
+      (funcionarioRetorno)="receberFuncionario($event)"></app-funcionariolista>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #modal4 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-enderecolista [modoLancamento]="true" (enderecoRetorno)="receberEndereco($event)"></app-enderecolista>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+  </div>
+</ng-template>

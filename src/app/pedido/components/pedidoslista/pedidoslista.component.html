@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row text-start mt-3">
+    <div class="col-md-10">
+      <h3 class>Lista de pedidos</h3>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">
+            Pesquisar
+          </span>
+          <input [(ngModel)]="termoBusca" (ngModelChange)="filtrar()" type="text" class="form-control"
+            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button (click)="adicionar(modal1)" class="btn btn-success offset-md-5">
+        Adicionar
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div *ngFor="let pedido of listaFiltrada; let i = index" class="col-lg-3 margin">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ pedido.nome }}</h3>
+          <div class="card-text">
+            <div>
+              <h5>Observacao: </h5>
+              {{ pedido.observacao }}
+            </div>
+            
+            <br>
+            <div>
+              <h5>Valor Total: R${{pedido.valorTotal}}</h5>
+              
+            </div>
+          </div>
+          <td *ngIf="!modoLancamento" class="col-md-1 me-1">
+
+            <div class="btn-group " role="group">
+
+                <div class="" type="button" (click)="verDetalhes(modal1, pedido, i)">
+                  <span class="badge bg-primary btn">
+                    <i class="bi bi-arrows-angle-expand"></i></span>
+                </div>
+
+                <div class="col ms-1" type="button" (click)="editar(modal1, pedido, i)">
+                  <span class="badge bg-warning btn"> <i
+                    class="bi bi-pen-fill"></i></span>
+                </div>
+
+                <div class="col ms-1" type="button" (click)="deletar(pedido)">
+                  <span class="badge bg-danger btn"> <i
+                          class="bi bi-trash3-fill"></i></span>
+                </div>
+
+            </div>
+            
+          </td>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Cadastrar Pedido</h4>
+    <button (click)="modal.dismiss('Cross click')" type="button" class="btn-close" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-pedidosdetails [pedido]="pedidoSelecionadoParaEdicao" [desabilitaCampo]="desabilitaCampo" [roleSelecionada]="roleSelecionada"
+    [mostrarBotoesRole]="mostrarBotoesRole"
+      (retorno)="addOuEditarPessoa($event)"></app-pedidosdetails>
+  </div>
+  <div class="modal-footer">
+    <button (click)="modal.close('Close click')" type="button" class="btn btn-light">
+      Close
+    </button>
+  </div>
+</ng-template>
