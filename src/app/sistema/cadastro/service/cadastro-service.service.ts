@@ -8,7 +8,7 @@ import { Cadastro } from '../cadastro';
 })
 export class CadastroServiceService {
 
-  API: string = 'http://frontIP/api/user';
+  API: string = 'http://192.168.3.23:443/api/user';
   http = inject(HttpClient);
 
   constructor() { }

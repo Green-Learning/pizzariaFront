@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SaborService {
 
-  API: string = "http://frontIP/api/sabores";
+  API: string = "http://192.168.3.23:443/api/sabores";
   http = inject(HttpClient);
 
   constructor() { }

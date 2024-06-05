@@ -8,7 +8,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class ItemService {
 
-  API: string = "http://frontIP/api/itens";
+  API: string = "http://192.168.3.23:443/api/itens";
   http = inject(HttpClient);
 
 

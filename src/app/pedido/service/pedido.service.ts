@@ -7,9 +7,10 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PedidoService {
 
-  API: string = 'http://frontIP/api/pedido'
+  API: string = 'http://192.168.3.23:443/api/pedido'
   http = inject(HttpClient);
 
   constructor() { }
@@ -17,7 +18,7 @@ export class PedidoService {
   listAll(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.API);
   }
-
+// 
   edit(pedido: Pedido): Observable<Pedido> {
     return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, pedido)
       .pipe(
