@@ -2,22 +2,22 @@
     <div class="row mb-3">
         <div class="col">
             <h4>Audit</h4>
-            <p><strong>ID:</strong> {{audit?.id}}</p>
+            <p><strong>ID:</strong> {{audit.id}}</p>
         </div>
         <div class="col" *ngIf="audit.pedido != null">
             <h4>Pedido</h4>
-            <p><strong>ID:</strong> {{audit?.pedido?.id}}</p>
-            <p><strong>Nome:</strong> {{audit?.pedido?.nome}}</p>
+            <p><strong>ID:</strong> {{audit.pedido.id}}</p>
+            <p><strong>Nome:</strong> {{audit.pedido.nome}}</p>
         </div>
         <div class="col" *ngIf="audit.item != null">
             <h4>Item</h4>
-            <p><strong>ID:</strong> {{audit?.item?.id}}</p>
-            <p><strong>Nome:</strong> {{audit?.item?.nome}}</p>
+            <p><strong>ID:</strong> {{audit.item.id}}</p>
+            <p><strong>Nome:</strong> {{audit.item.nome}}</p>
         </div>
-        <div class="col" *ngIf="audit.sabor != null">
+        <div class="col" *ngIf="audit.sabores != null">
             <h4>Sabor</h4>
-            <p><strong>ID:</strong> {{audit?.sabor?.id}}</p>
-            <p><strong>Nome:</strong> {{audit?.sabor?.nome}}</p>
+            <p><strong>ID:</strong> {{audit.sabores.id}}</p>
+            <p><strong>Nome:</strong> {{audit.sabores.nome}}</p>
         </div>
     </div>
     <div class="row">

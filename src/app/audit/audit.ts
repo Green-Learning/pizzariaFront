@@ -6,7 +6,7 @@ export class Audit {
     id!: number;
     pedido!: Pedido;
     item!: Item;
-    sabor!: Sabores;
+    sabores!: Sabores;
     userCriacao!: string;
     userAlteracao!: string;
     userExclusao!: string;

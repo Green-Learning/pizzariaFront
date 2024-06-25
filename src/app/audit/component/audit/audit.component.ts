@@ -58,7 +58,7 @@ export class AuditComponent {
       const excluicao = auditoria.dataHoraExclusao;
 
       const pedido = auditoria.pedido;
-      const sabor = auditoria.sabor;
+      const sabor = auditoria.sabores;
       const item = auditoria.item;
 
       let acaoValida = true;
