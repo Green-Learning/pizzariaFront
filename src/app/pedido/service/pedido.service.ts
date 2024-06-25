@@ -1,6 +1,8 @@
 import { Pedido } from './../pedido';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
+import { LoginService } from 'src/app/sistema/login/services/login.service';
+
 
 import { HttpClient } from '@angular/common/http';
 
@@ -9,8 +11,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PedidoService {
 
-  API: string = 'http://frontIP/api/pedido'
+  API: string = 'http://localhost:8080/api/pedido'
   http = inject(HttpClient);
+  loginService = inject(LoginService); 
 
   constructor() { }
 
@@ -19,7 +22,8 @@ export class PedidoService {
   }
 
   edit(pedido: Pedido): Observable<Pedido> {
-    return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, pedido)
+    const nomeUser = this.loginService.getUsername();
+    return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, { pedido, userAlteracao: nomeUser })
       .pipe(
         catchError(error => {
           console.error("Error", error);
@@ -29,18 +33,23 @@ export class PedidoService {
   }
 
   save(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(this.API, pedido);
+    const nomeUser = this.loginService.getUsername();
+    return this.http.post<Pedido>(this.API, { pedido, userCreacao: nomeUser });
+
   }
 
   deletar(id: number): Observable<string> {
-    return this.http.delete<string>(`${this.API}/deletar/${id}`);
+    const nomeUser = this.loginService.getUsername();
+    return this.http.delete<string>(`${this.API}/deletar/${id}`, { params: { userExclusao: nomeUser } });
+
   }
 
   verify(pedido: Pedido): Observable<Pedido> {
+    const nomeUser = this.loginService.getUsername();
     if (pedido.id) {
       console.log('a ');
       console.log(pedido);
-      return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, pedido)
+      return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, { pedido, userAlteracao: nomeUser })
         .pipe(
           catchError(error => {
             console.error("Error", error);
@@ -51,7 +60,8 @@ export class PedidoService {
 
       console.log('b ');
       console.log(pedido);
-      return this.http.post<Pedido>(this.API, pedido);
+      return this.http.post<Pedido>(this.API, { pedido, userCreacao: nomeUser });
+
     }
 
   }
