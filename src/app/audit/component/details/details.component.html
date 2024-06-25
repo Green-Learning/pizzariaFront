@@ -1,0 +1,37 @@
+<div class="container mt-2">
+    <div class="row mb-3">
+        <div class="col">
+            <h4>Audit</h4>
+            <p><strong>ID:</strong> {{audit?.id}}</p>
+        </div>
+        <div class="col" *ngIf="audit.pedido != null">
+            <h4>Pedido</h4>
+            <p><strong>ID:</strong> {{audit?.pedido?.id}}</p>
+            <p><strong>Nome:</strong> {{audit?.pedido?.nome}}</p>
+        </div>
+        <div class="col" *ngIf="audit.item != null">
+            <h4>Item</h4>
+            <p><strong>ID:</strong> {{audit?.item?.id}}</p>
+            <p><strong>Nome:</strong> {{audit?.item?.nome}}</p>
+        </div>
+        <div class="col" *ngIf="audit.sabor != null">
+            <h4>Sabor</h4>
+            <p><strong>ID:</strong> {{audit?.sabor?.id}}</p>
+            <p><strong>Nome:</strong> {{audit?.sabor?.nome}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Usuário</h4>
+            <p *ngIf="audit?.userCriacao != null"><strong>Criação:</strong> {{audit.userCriacao}}</p>
+            <p *ngIf="audit?.userAlteracao != null"><strong>Alteração:</strong> {{audit.userAlteracao}}</p>
+            <p *ngIf="audit?.userExclusao != null"><strong>Exclusão:</strong> {{audit.userExclusao}}</p>
+            </div>
+            <div class="col">
+            <h4>Data/Hora</h4>
+            <p *ngIf="audit?.dataHoraCriacao != null"><strong>Criação:</strong> {{audit?.dataHoraCriacao | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+            <p *ngIf="audit?.dataHoraAlteracao != null"><strong>Alteração:</strong> {{audit?.dataHoraAlteracao | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+            <p *ngIf="audit?.dataHoraExclusao != null"><strong>Exclusão:</strong> {{audit?.dataHoraExclusao | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+            </div>
+    </div>
+</div>

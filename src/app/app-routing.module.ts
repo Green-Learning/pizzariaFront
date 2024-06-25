@@ -9,6 +9,7 @@ import { IndexComponent } from './components/layout/index/index.component';
 import { FuncionariolistaComponent } from './funcionario/funcionariolista/funcionariolista.component';
 import { CadastroComponent } from './sistema/cadastro/cadastro.component';
 import { rotaguardGuard } from './guards/rotaguard.guard';
+import { AuditComponent } from './audit/component/audit/audit.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
       {path:'pedidos', component:PedidoslistaComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},},
       {path:'itens', component:ItemslistaComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},},
       {path:'sabores', component:SaboreslistaComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},},
-      {path:'funcionarios', component:FuncionariolistaComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},}
+      {path:'funcionarios', component:FuncionariolistaComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},},
+      {path:'audit', component:AuditComponent,canActivate: [rotaguardGuard],data: {requiredRoles: ['admin']},}
     ], 
   }
 ];

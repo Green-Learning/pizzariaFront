@@ -27,6 +27,8 @@ import { EnderecolistaComponent } from './endereco/Components/enderecolista/ende
 import { CadastroComponent } from './sistema/cadastro/cadastro.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { RouterModule } from '@angular/router';
+import { AuditComponent } from './audit/component/audit/audit.component';
+import { DetailsComponent } from './audit/component/details/details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { RouterModule } from '@angular/router';
     FuncionariolistaComponent,
     FuncionariodetailsComponent,
     EnderecolistaComponent,
-    CadastroComponent
+    CadastroComponent,
+    AuditComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
