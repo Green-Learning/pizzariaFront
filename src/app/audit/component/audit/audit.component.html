@@ -26,25 +26,25 @@
             <table class="table table-striped text-center align-middle">
               <thead class="fixed-header">
               <tr class="main-header">
-                <th scope="col">ID</th>
-                <th scope="col">Pedido</th>
-                <th scope="col">Sabor</th>
-                <th scope="col">Item</th>
-                <th scope="col">Usuário criação</th>
-                <th scope="col" colspan="2">Criação</th>
-                <th scope="col">Usuário alteração</th>
-                <th scope="col" colspan="2">Alteração</th>
-                <th scope="col">Usuário exclusão</th>
-                <th scope="col" colspan="2">Exclusão</th>
-                <th scope="col">Ação</th>
+                <th scope="col" style="text-align: start;">ID</th>
+                <th scope="col" style="text-align: start;">Pedido</th>
+                <th scope="col" style="text-align: start;">Sabor</th>
+                <th scope="col" style="text-align: start;">Item</th>
+                <th scope="col" style="text-align: start;">Usuário criação</th>
+                <th scope="col" style="text-align: start;" colspan="2">Criação</th>
+                <th scope="col" style="text-align: start;">Usuário alteração</th>
+                <th scope="col" style="text-align: start;" colspan="2">Alteração</th>
+                <th scope="col" style="text-align: start;">Usuário exclusão</th>
+                <th scope="col" style="text-align: start;" colspan="2">Exclusão</th>
+                <th scope="col" style="text-align: start;">Ação</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let audit of listaAuditoriaFiltrada; let i = index">
                 <td>{{ audit.id }}</td>
-                <td>{{ audit?.pedido?.id }}</td>
-                <td>{{ audit?.sabor?.id }}</td>
-                <td>{{ audit?.item?.id }}</td>
+                <td>{{ audit?.pedido.id }}</td>
+                <td>{{ audit?.sabor.id }}</td>
+                <td>{{ audit?.item.id }}</td>
                 <td>{{ audit?.userCriacao }}</td>
                 <td>{{ audit?.dataHoraCriacao | date:'short' }}</td>
                 <td>{{ audit?.userAlteracao }}</td>
