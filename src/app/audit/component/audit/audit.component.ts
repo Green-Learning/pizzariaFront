@@ -28,6 +28,7 @@ export class AuditComponent {
     this.auditoriaService.listar().subscribe({
       next: lista => {
         this.listaAuditoriaOriginal = lista;
+        console.log(this.listaAuditoriaOriginal);
         this.listaAuditoriaFiltrada = lista;
       }
     });
