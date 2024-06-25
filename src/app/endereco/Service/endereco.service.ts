@@ -7,7 +7,7 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class EnderecoService {
-  API = 'http://frontIP/api/endereco'
+  API = 'http://localhost:8080/api/endereco'
   http = inject(HttpClient);
 
   constructor() { }

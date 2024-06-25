@@ -17,20 +17,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './sistema/login/login.component';
+//import { LoginComponent } from './sistema/login/login.component';
 import { IndexComponent } from './components/layout/index/index.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FuncionariolistaComponent } from './funcionario/funcionariolista/funcionariolista.component';
 import { FuncionariodetailsComponent } from './funcionario/funcionariodetails/funcionariodetails/funcionariodetails.component';
 import { EnderecolistaComponent } from './endereco/Components/enderecolista/enderecolista/enderecolista.component';
-import { httpInterceptorProviders } from './interceptor/httpincerceptor.service';
+//import { httpInterceptorProviders } from './interceptor/httpincerceptor.service';
 import { CadastroComponent } from './sistema/cadastro/cadastro.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
+    //LoginComponent,
     IndexComponent,
     PessoaslistaComponent,
     PessoasdetailsComponent,
@@ -51,10 +53,17 @@ import { CadastroComponent } from './sistema/cadastro/cadastro.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: [],
+          sendAccessToken: true
+      }
+  })
   ],
   providers: [
-    httpInterceptorProviders
+    //httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
