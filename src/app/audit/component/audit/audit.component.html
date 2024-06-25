@@ -43,7 +43,7 @@
               <tr *ngFor="let audit of listaAuditoriaFiltrada; let i = index">
                 <td>{{ audit.id }}</td>
                 <td>{{ audit?.pedido?.id }}</td>
-                <td>{{ audit?.sabores?.[0].nome }}</td>
+                <td>{{ audit?.sabores?.[1] }}</td>
                 <td>{{ audit?.item?.id }}</td>
                 <td>{{ audit?.userCriacao }}</td>
                 <td>{{ audit?.dataHoraCriacao | date:'short' }}</td>
