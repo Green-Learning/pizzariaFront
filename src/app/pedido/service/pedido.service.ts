@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PedidoService {
 
-  API: string = 'https://172.31.94.174/api/pedido'
+  API: string = 'https://18.209.148.183/api/pedido'
   http = inject(HttpClient);
   loginService = inject(LoginService); 
 

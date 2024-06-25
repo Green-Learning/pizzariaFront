@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/sistema/login/services/login.service';
 })
 export class ItemService {
 
-  API: string = "http://localhost:8080/api/itens";
+  API: string = "https://18.209.148.183/api/itens";
   http = inject(HttpClient);
   loginService = inject(LoginService);
 

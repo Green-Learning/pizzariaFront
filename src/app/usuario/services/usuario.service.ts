@@ -8,7 +8,7 @@ import { Injectable, inject } from '@angular/core';
 })
 export class UsuarioService {
 
-  API: string = 'https://172.31.94.174/api/usuario';
+  API: string = 'https://18.209.148.183/api/usuario';
   http = inject(HttpClient);
 
   constructor() { }

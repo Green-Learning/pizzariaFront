@@ -8,7 +8,7 @@ import { Audit } from '../audit';
 })
 export class AuditService {
 
-  API: string = 'https://172.31.94.174/api/auditoria'
+  API: string = 'https://18.209.148.183/api/auditoria'
   http = inject(HttpClient);
 
   constructor() { }

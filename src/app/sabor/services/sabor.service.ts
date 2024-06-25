@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/sistema/login/services/login.service';
 })
 export class SaborService {
 
-  API: string = "https://172.31.94.174/api/sabores";
+  API: string = "https://18.209.148.183/api/sabores";
   http = inject(HttpClient);
   loginService = inject(LoginService);
 
