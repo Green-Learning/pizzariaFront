@@ -9,7 +9,7 @@ import { Funcionario } from '../funcionario';
 })
 export class FuncionarioService {
 
-  API: string = 'http://localhost:8080/api/funcionario';
+  API: string = 'https://172.31.94.174/api/funcionario';
   http = inject(HttpClient);
 
   constructor() { }
